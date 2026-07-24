@@ -1,0 +1,18 @@
+generated: '2026-07-18'
+method: none
+host: https://clarisights.com
+note: >-
+  No .well-known discovery documents published. All probed paths returned 404
+  on both clarisights.com and app.clarisights.com (2026-07-18). Recorded for
+  audit; no WellKnown pointer emitted.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

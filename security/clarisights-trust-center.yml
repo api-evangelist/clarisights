@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://clarisights.com/security
+url: https://clarisights.com/security
+compliance_page: https://clarisights.com/legal/certifications
+certifications:
+- SOC 2 Type 2
+- ISO 27001
+- GDPR
+evidence:
+- source: https://clarisights.com/security
+  keywords:
+  - soc 2 type 2
+  - iso 27001
+  - gdpr

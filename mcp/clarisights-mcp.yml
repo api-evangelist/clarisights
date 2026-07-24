@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://clarisights.com/marketing-data-mcp
+server:
+  name: Clarisights Marketing Data MCP
+  transport: http
+  url_pattern: https://clarisights.com/dashboard/mcp-settings
+  note: >-
+    Workspace-specific remote MCP endpoint. Each workspace admin enables AI
+    access (Settings -> Workspace -> AI access), then retrieves a
+    workspace-scoped connection URL from clarisights.com/dashboard/mcp-settings
+    and adds it to an MCP-compatible client. Authentication uses the existing
+    Clarisights login; no separate API token is issued. Access is governed by
+    the same workspace ACL as the UI ("the AI sees what you see"). Compatible
+    clients named in the docs: Claude, ChatGPT, Cursor, Gemini and other
+    MCP-compatible tools.
+auth:
+  type: workspace-login
+  scoped: workspace
+  data_retention: none-stored (routes through Clarisights; documented GDPR-compliant)
+tools:
+- name: list_data_sources
+  description: List the marketing data sources connected to the workspace (50+ connectors across channels, attribution platforms, and the warehouse).
+- name: list_metrics
+  description: List available metrics / KPIs defined in the workspace vocabulary.
+- name: list_dimensions
+  description: List available dimensions for grouping and filtering data.
+- name: query_data
+  description: Query marketing data with aggregation, grouping, trending, and filters (typically up to ~2 years of history).
+- name: list_reports
+  description: List existing team reports in the workspace.
+- name: get_report
+  description: Retrieve an existing report by reference for navigation and reuse.

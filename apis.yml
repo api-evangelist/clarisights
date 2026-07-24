@@ -1,8 +1,29 @@
 aid: clarisights
 name: Clarisights
-description: Clarisights is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Clarisights is an enterprise marketing analytics platform that unifies
+  marketing data from channels, web analytics, attribution platforms, and the
+  data warehouse into a single self-service system. Marketing teams explore
+  data, build custom dashboards, and generate trustworthy insights without SQL
+  or data-engineering support, accelerating reporting cycles and reducing manual
+  spreadsheet work. Clarisights also ships a Marketing Data MCP server that
+  connects governed marketing data to AI tools such as Claude, ChatGPT, Cursor,
+  and Gemini, exposing discovery, query, and report-navigation tools scoped by
+  the same workspace access controls as the UI. The platform advertises 50+
+  connectors, ISO 27001 certification, and SOC 2 Type 2 attestation.
 url: https://raw.githubusercontent.com/api-evangelist/clarisights/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://clarisights.com/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,9 +32,17 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
+- Marketing Analytics
+- Marketing Intelligence
+- Business Intelligence
+- Data Integration
+- Reporting
+- Dashboards
+- MCP
+- AI
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +52,33 @@ maintainers:
 common:
 - type: Website
   url: https://clarisights.com/
+- type: MCPServer
+  name: Clarisights Marketing Data MCP
+  url: mcp/clarisights-mcp.yml
+- type: Integrations
+  url: https://clarisights.com/integrations
+- type: Blog
+  url: https://clarisights.com/Blog/Collection
+- type: Login
+  url: https://app.clarisights.com/
+- type: PrivacyPolicy
+  url: https://clarisights.com/legal/privacy
+- type: Security
+  url: https://clarisights.com/security
+- type: Compliance
+  url: https://clarisights.com/legal/certifications
+- type: TrustCenter
+  url: security/clarisights-trust-center.yml
+- type: DomainSecurity
+  url: security/clarisights-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/clarisights-vulnerability-disclosure.yml
+- type: Conformance
+  url: conformance/clarisights-conformance.yml
+- type: LLMsTxt
+  url: llms/clarisights-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

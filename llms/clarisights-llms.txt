@@ -1,0 +1,25 @@
+# Clarisights
+
+> Clarisights is an enterprise marketing analytics platform that unifies marketing data from channels, analytics, attribution, and warehouse sources into a single self-service platform, so marketing teams can explore data, build dashboards, and get trustworthy insights without SQL or a data team. It also ships a Marketing Data MCP server that connects governed marketing data to AI tools (Claude, ChatGPT, Cursor, Gemini).
+
+## AI / Agent access
+- [Marketing Data MCP](https://clarisights.com/marketing-data-mcp): Remote MCP server; workspace-scoped connection URL from clarisights.com/dashboard/mcp-settings, authenticated with your Clarisights login, governed by workspace ACL. Tools: list_data_sources, list_metrics, list_dimensions, query_data, list_reports, get_report.
+- [MCP manifest (this repo)](mcp/clarisights-mcp.yml)
+
+## Product
+- [Clarisights](https://clarisights.com/): Enterprise marketing analytics platform.
+- [Integrations](https://clarisights.com/integrations): 50+ connectors across channels, attribution platforms, and the warehouse.
+- [Customers / case studies](https://clarisights.com/customers)
+- [Sign in](https://app.clarisights.com/)
+
+## Security & compliance
+- [Security](https://clarisights.com/security): SOC 2 Type 2, ISO 27001, GDPR; security contact security@clarisights.com.
+- [Certifications](https://clarisights.com/legal/certifications)
+- [Privacy Policy](https://clarisights.com/legal/privacy)
+
+## More
+- [Blog](https://clarisights.com/Blog/Collection)
+- [About](https://clarisights.com/about-us)
+
+## Notes
+- No public OpenAPI, developer portal, or REST API reference was found (2026-07-18). The primary programmatic surface is the Marketing Data MCP server.
