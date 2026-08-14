@@ -32,7 +32,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-13'
 tags:
 - Company
 - Marketing Analytics
@@ -77,8 +77,31 @@ common:
   url: conformance/clarisights-conformance.yml
 - type: LLMsTxt
   url: llms/clarisights-llms.txt
+- type: AgentSkill
+  name: Marketing Performance Analyst (provider-published)
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/clarisights-authentication.yml
+- type: Conventions
+  url: conventions/clarisights-conventions.yml
+- type: Packages
+  url: packages/clarisights-packages.yml
+- type: Components
+  url: components/clarisights-components.yml
+- type: RateLimits
+  url: rate-limits/clarisights-rate-limits.yml
+- type: Plans
+  url: plans/clarisights-plans-pricing.yml
+- type: GitHubOrganization
+  url: https://github.com/clarisights
+- type: Documentation
+  url: https://help.clarisights.com/en/
+- type: Support
+  url: https://help.clarisights.com/
+- type: GettingStarted
+  url: https://help.clarisights.com/en/collections/3767521-using-clarisights-101
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 8
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
