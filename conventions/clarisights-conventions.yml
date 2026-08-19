@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/clarisights/claude-plugins/blob/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+sources:
+- https://github.com/clarisights/claude-plugins/blob/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+- https://clarisights.com/marketing-data-mcp
+surface: mcp
+surface_note: >-
+  These are the conventions of the Marketing Data MCP tool surface — the only
+  machine-readable contract Clarisights publishes. There is no REST/GraphQL API
+  and no OpenAPI, so nothing here is derived from a spec; every rule below is
+  transcribed from the provider's own published Agent Skill, which documents the
+  call contract for query_data and the discovery tools.
+authentication:
+  style: in-client sign-in with the user's existing Clarisights credentials
+  separate_token: false
+  scope: workspace ACL of the signed-in user
+  admin_gate: Settings -> Workspace -> AI access
+  detail: authentication/clarisights-authentication.yml
+idempotency:
+  supported: false
+  reason: >-
+    The surface is documented read-only — discovery, query, and report-read
+    tools only. There are no write operations, so no idempotency key, header, or
+    retry contract exists or is needed. No Idempotency pointer is emitted.
+pagination:
+  style: page-size
+  params:
+  - name: page_size
+    default: 50
+    max: 1000
+    note: Increase for comprehensive breakdowns.
+  - name: sort_columns
+    form: '[{"metric_key": -1}]'
+    note: -1 for descending; ordering is applied before the page is cut.
+  cursor: null
+  cursor_note: No cursor or offset parameter is documented on query_data.
+filtering:
+  form: or-of-and
+  shape: '[[{"dimension": "...", "operator": "$in", "value": ["..."]}]]'
+  operators: [$in, $nin, $i_contains, $i_not_contains, $eq, $gt, $lt]
+  note: >-
+    Outer array is OR'd, inner array is AND'd. Filters are expressed against
+    dimension keys returned by list_dimensions.
+query_modes:
+  param: call_type
+  values:
+  - {value: aggregate, meaning: period totals, no breakdown}
+  - {value: groups, meaning: breakdown by one or more dimensions}
+  - {value: trends, meaning: time series}
+date_range:
+  params: [date_start, date_end]
+  format: YYYY-MM-DD
+  history_window: typically two full years per workspace
+  comparison: >-
+    No built-in period-over-period parameter. The provider's own skill instructs
+    two separate calls, one per period, and calculating the delta client-side.
+currency:
+  param: to_currency
+  note: Converts monetary metrics to a named currency (e.g. "EUR", "USD"); the currency in force is returned in response metadata.
+naming:
+  keys_vs_labels: >-
+    Every metric and dimension has a machine `key` and a human `display_name`.
+    Calls must use the `key`. list_metrics / list_dimensions accept a `search`
+    parameter for resolving a human name to a key.
+  custom_vs_system: >-
+    Custom metrics/dimensions are workspace-defined and work cross-channel;
+    system metrics/dimensions come from a single ad platform and are
+    channel-specific. list_metrics returns custom only by default —
+    include_system_metrics=true (plus a channel) is required to see system ones.
+response:
+  format: csv
+  format_note: query_data returns CSV with headers rather than JSON.
+  metadata: currency is noted in the response metadata
+  null_sentinel:
+    value: '-'
+    meaning: >-
+      No data for that combination — explicitly NOT zero. The metric either does
+      not apply or no rows exist. Treating "-" as 0 is the documented failure
+      mode.
+  precomputed_ratios: >-
+    Ratio metrics (CPA, ROAS, CTR) arrive pre-calculated; the docs instruct
+    consumers not to recompute them by dividing.
+versioning:
+  scheme: null
+  note: No API version parameter, header, or version-scheme is documented.
+error_envelope:
+  documented: false
+  note: >-
+    No error catalog, problem-type registry, or error envelope is published for
+    the MCP surface. MCP transport-level errors are whatever the JSON-RPC layer
+    returns; nothing provider-specific is documented. errors/ is therefore not
+    emitted.
+rate_limit_signal:
+  documented: false
+  detail: rate-limits/clarisights-rate-limits.yml
+request_tracing:
+  documented: false
+cross_links:
+  authentication: authentication/clarisights-authentication.yml
+  rate_limits: rate-limits/clarisights-rate-limits.yml
+  mcp: mcp/clarisights-mcp.yml
+  skills: skills/_index.yml

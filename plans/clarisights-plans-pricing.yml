@@ -1,0 +1,29 @@
+generated: '2026-08-13'
+method: searched
+source: https://clarisights.com/
+plan_count: 0
+note: >-
+  Clarisights publishes no pricing at all. There is no pricing page:
+  clarisights.com/pricing returns 404, no Pricing link appears in the site
+  navigation, and the provider's own llms.txt — which enumerates 50+ pages
+  across About, Product, Use Cases, Industries, Case Studies, Integrations,
+  Resources, Contact and legal — contains no pricing entry. Every commercial
+  path on the site funnels to /demo ("Book a Demo"). The Marketing Data MCP FAQ
+  carries a question titled "Which plan do I need?", so plan tiers demonstrably
+  exist internally, but the answer is rendered client-side and is not in the
+  served HTML, and no tier is named anywhere public. This is an enterprise
+  sales-gated pricing model, recorded as an honest zero rather than omitted.
+plans: []
+pricing_model: enterprise-contact-sales
+sales_gate: https://clarisights.com/demo
+evidence:
+- url: https://clarisights.com/pricing
+  status: 404
+- url: https://clarisights.com/demo
+  status: 200
+- url: https://clarisights.com/llms.txt
+  status: 200
+  finding: provider-published site map with no pricing entry
+- url: https://clarisights.com/marketing-data-mcp
+  status: 200
+  finding: FAQ question "Which plan do I need?" present; answer body not in served HTML.

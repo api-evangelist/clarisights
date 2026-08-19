@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry search + registry.npmjs.org metadata, github.com/clarisights repo
+  listing, PyPI, RubyGems
+note: >-
+  Clarisights publishes NO first-party API client library / SDK in any registry.
+  Its programmatic surface is the Marketing Data MCP server, which is consumed
+  by an MCP client over HTTP with the user's own login — there is nothing to
+  wrap in an SDK. What IS published first-party on npm is Knit, the company's
+  React design-system component library (see components/), plus an npm-less
+  Claude plugin distributed straight from GitHub. Because no package here is an
+  API client, NO `SDKs` pointer is emitted in apis.yml — the sdk_count check
+  measures client libraries for an API and Clarisights has none. PyPI
+  (clarisights) 404, RubyGems (clarisights) 404, RubyGems search for
+  "clarisights" returned no gems.
+packages:
+- language: javascript
+  registry: npm
+  name: knit-ui
+  url: https://www.npmjs.com/package/knit-ui
+  install: npm install knit-ui
+  official: true
+  kind: ui-component-library
+  version: 0.7.7
+  published: '2024-01-18'
+  license: MIT
+  repository: https://github.com/clarisights/KnitUI
+  homepage: https://knitui.design
+  description: >-
+    "Component library for Clarisights" — the React implementation of the Knit
+    design language.
+  note: >-
+    First-party: repo lives in the clarisights GitHub org and the package
+    description names Clarisights. The npm `repository` field still points at
+    github.com/adwyze/KnitUI — Adwyze is the company's former name, and the repo
+    now redirects to clarisights/KnitUI. Not an API client. Last release
+    2024-01-18; no publish in over two years.
+- language: javascript
+  registry: npm
+  name: '@clarisights/knit.design'
+  url: https://www.npmjs.com/package/@clarisights/knit.design
+  install: npm install @clarisights/knit.design
+  official: true
+  kind: design-system
+  version: 0.1.0
+  published: '2019-03-07'
+  description: '"Component library for Clarisights" — the Knit design-language documentation package.'
+  note: >-
+    Published under the company's own @clarisights npm scope, so first-party is
+    unambiguous. Single 0.1.0 release in 2019; effectively abandoned, superseded
+    by knit-ui.
+- language: markdown
+  registry: github
+  name: use-clarisights
+  url: https://github.com/clarisights/claude-plugins
+  install: |
+    /plugin marketplace add clarisights/claude-plugins
+    /plugin install use-clarisights@clarisights
+  official: true
+  kind: agent-skill-plugin
+  version: 0.1.0
+  published: '2026-07-21'
+  license: MIT
+  description: >-
+    Official Clarisights Claude plugin marketplace — one plugin
+    (use-clarisights) carrying the marketing-performance-analyst Agent Skill
+    that drives the Marketing Data MCP connector.
+  note: >-
+    Distributed from GitHub, not a package registry, so there is no registry
+    metadata endpoint to query. `version` is read from the plugin manifest
+    (.claude-plugin/plugin.json) and `published` from the repo's last push
+    (2026-07-21T13:46:24Z) — the plugin marketplace format has no release
+    artifact to date. Captured verbatim in skills/.
+registries_checked:
+- {registry: npm, query: clarisights, result: 3 packages (2 first-party, 1 fork of knit-ui)}
+- {registry: pypi, package: clarisights, status: 404}
+- {registry: rubygems, package: clarisights, status: 404}
+- {registry: rubygems, query: clarisights, result: no gems}
+- {registry: github, org: clarisights, result: 32 repos — infra forks, a Ruby bing-ads client, and the Claude plugin marketplace; no published API SDK}
+sdk_count: 0

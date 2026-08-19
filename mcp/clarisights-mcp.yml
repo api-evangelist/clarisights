@@ -1,34 +1,151 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
 status: published
 source: https://clarisights.com/marketing-data-mcp
+sources:
+- https://clarisights.com/marketing-data-mcp
+- https://clarisights.com/llms.txt
+- https://github.com/clarisights/claude-plugins
 server:
   name: Clarisights Marketing Data MCP
   transport: http
   url_pattern: https://clarisights.com/dashboard/mcp-settings
   note: >-
-    Workspace-specific remote MCP endpoint. Each workspace admin enables AI
-    access (Settings -> Workspace -> AI access), then retrieves a
-    workspace-scoped connection URL from clarisights.com/dashboard/mcp-settings
-    and adds it to an MCP-compatible client. Authentication uses the existing
-    Clarisights login; no separate API token is issued. Access is governed by
-    the same workspace ACL as the UI ("the AI sees what you see"). Compatible
-    clients named in the docs: Claude, ChatGPT, Cursor, Gemini and other
-    MCP-compatible tools.
+    Remote, workspace-scoped MCP server. There is no single public endpoint:
+    each workspace gets its own connection URL. Setup is three published steps —
+    (1) a workspace admin flips the global toggle at Settings -> Workspace ->
+    AI access, (2) a signed-in user opens their MCP settings page and copies the
+    workspace connection URL, (3) the user pastes that URL into Claude, ChatGPT,
+    Cursor, Gemini or any MCP-compatible client and signs in with their
+    Clarisights credentials. No separate API token is issued and no parallel
+    permission tree exists; the same workspace ACL applies ("the AI sees what
+    you see").
+deployment:
+  mode: remote
+  endpoint: null
+  endpoint_note: >-
+    Deliberately null. Clarisights ships a hosted remote MCP server an MCP
+    client connects to over HTTP, but the exact URL is minted per workspace and
+    is only retrievable from inside the authenticated app, so no single public
+    endpoint URL exists to record. Recording a guessed URL here would assert a
+    verified agent surface that we never reached.
+  install: null
+  package: null
+  auth: oauth
+  auth_note: >-
+    Client signs in with the user's existing Clarisights credentials from the
+    AI tool; no separately-issued API key or token. Documented as an in-client
+    sign-in flow, not an anonymous endpoint.
+  verified: searched
+  probe:
+    url: https://clarisights.com/dashboard/mcp-settings
+    http_status: 404
+    checked: '2026-08-13'
+    note: >-
+      The published settings path 404s on the marketing site (clarisights.com is
+      a Framer site); the real settings page lives inside the authenticated app
+      at app.clarisights.com. This is a docs-URL defect on the provider's side,
+      not evidence the server is absent — the server is documented in the
+      provider's own llms.txt and driven by the provider's own published Claude
+      skill. An earlier catalog census read this 404 as mode:none; corrected
+      here to mode:remote with a null endpoint.
 auth:
   type: workspace-login
   scoped: workspace
-  data_retention: none-stored (routes through Clarisights; documented GDPR-compliant)
+  admin_gate: Settings -> Workspace -> AI access (global on/off per workspace)
+  separate_token: false
+  acl: same as the signed-in user's Clarisights workspace ACL (accounts, regions, brands, reports)
+  data_retention: >-
+    The MCP is documented as an interface, not a store — it routes queries to
+    Clarisights and returns results; documented GDPR-compliant with no
+    user-level data stored by the MCP layer.
+capabilities:
+  read_only: true
+  write_actions: false
+  write_note: >-
+    Documented as read-only. The provider's own comparison table explicitly
+    marks "Execute campaigns — pause, scale, change budgets" as an ad-platform
+    MCP capability that Clarisights does NOT offer.
+  history_window: typically two full years per workspace
+  semantic_layer: >-
+    Queries run against one governed semantic layer with 50+ connectors joined
+    at deepest granularity, expressed in the team's own KPI definitions
+    (blended CAC, contribution-margin ROAS, MER, target-CPI).
+  clients_named: [Claude, ChatGPT, Cursor, Gemini]
 tools:
 - name: list_data_sources
-  description: List the marketing data sources connected to the workspace (50+ connectors across channels, attribution platforms, and the warehouse).
+  category: discover
+  description: >-
+    List available channels (e.g. facebook, adwords, tiktok) and segments —
+    saved cross-channel views with pre-applied filters — in the workspace.
 - name: list_metrics
-  description: List available metrics / KPIs defined in the workspace vocabulary.
+  category: discover
+  description: >-
+    List the workspace's metrics/KPIs (CPA, ROAS, blended CAC), ranked by the
+    team's actual usage, custom metrics surfaced first. Returns a metric `key`
+    plus `display_name` and a `description`.
+  parameters:
+  - name: search
+    description: Find metrics by name instead of paging through hundreds of results.
+  - name: include_system_metrics
+    description: >-
+      Defaults to custom metrics only; set true (with a specific `channel`) to
+      include single-channel system metrics.
+  - name: channel
+    description: Restrict system metrics to one channel.
 - name: list_dimensions
-  description: List available dimensions for grouping and filtering data.
+  category: discover
+  description: >-
+    List breakdowns the agent can group by — channel, country, campaign,
+    creative concept, audience. Custom dimensions (source "custom") work across
+    channels; system dimensions are channel-specific.
+  parameters:
+  - name: search
+    description: Find dimensions by name.
 - name: query_data
-  description: Query marketing data with aggregation, grouping, trending, and filters (typically up to ~2 years of history).
+  category: query
+  description: >-
+    Run aggregate, group, or trend queries with filters, date ranges and
+    currency conversion. Returns clean CSV the agent reasons over; ratio metrics
+    (CPA, ROAS, CTR) come back pre-calculated and "-" means no data rather than
+    zero.
+  parameters:
+  - name: channels
+    description: Array of channel names from list_data_sources, or a segment name (e.g. "segment_108").
+  - name: metrics
+    description: Array of metric keys (the `key` field, not display_name).
+  - name: dimensions
+    description: Array of dimension keys for breakdowns; omit for aggregate queries.
+  - name: call_type
+    description: '"aggregate" for totals, "groups" for dimension breakdowns, "trends" for time-series.'
+  - name: date_start
+    description: YYYY-MM-DD.
+  - name: date_end
+    description: YYYY-MM-DD.
+  - name: filters
+    description: >-
+      OR-of-AND form [[{"dimension": "...", "operator": "$in", "value": ["..."]}]].
+      Operators: $in, $nin, $i_contains, $i_not_contains, $eq, $gt, $lt.
+  - name: sort_columns
+    description: '[{"metric_key": -1}] for descending.'
+  - name: page_size
+    description: Default 50, max 1000.
+  - name: to_currency
+    description: Convert monetary metrics to a currency (e.g. "EUR", "USD").
 - name: list_reports
-  description: List existing team reports in the workspace.
+  category: navigate
+  description: Every Clarisights report the signed-in user has access to, surfaced to the agent for context.
 - name: get_report
-  description: Retrieve an existing report by reference for navigation and reuse.
+  category: navigate
+  description: Tab-level and widget-level structure of a report, so the agent can summarize or recreate it.
+tool_schema_provenance: >-
+  Tool names come from the provider's Marketing Data MCP page and llms.txt.
+  Parameter lists for list_metrics, list_dimensions and query_data are
+  transcribed from the provider's own published Agent Skill
+  (github.com/clarisights/claude-plugins, "Using the Clarisights MCP" section) —
+  they are the provider's documented call contract, not an authenticated
+  tools/list introspection. Live tools/list introspection was not possible: the
+  endpoint is workspace-scoped and requires an authenticated session, so no
+  anonymous JSON-RPC probe exists to run.
+skills:
+- skills/_index.yml

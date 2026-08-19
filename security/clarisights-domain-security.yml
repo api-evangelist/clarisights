@@ -1,11 +1,11 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: clarisights.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Aug 20 23:59:59 2026 GMT
+  cert_expires: Oct 19 15:03:13 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 domains:

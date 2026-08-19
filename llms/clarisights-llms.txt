@@ -1,25 +1,91 @@
 # Clarisights
 
-> Clarisights is an enterprise marketing analytics platform that unifies marketing data from channels, analytics, attribution, and warehouse sources into a single self-service platform, so marketing teams can explore data, build dashboards, and get trustworthy insights without SQL or a data team. It also ships a Marketing Data MCP server that connects governed marketing data to AI tools (Claude, ChatGPT, Cursor, Gemini).
+> Clarisights is the leading marketing analytics platform for enterprises (ranked #1 on G2). It imports, connects, joins, and unifies all of a company's marketing data — advertising channels, web/app analytics, attribution/measurement, and backend/warehouse data — down to the most granular level, so marketing and data teams can go from question to insight in minutes without SQL, spreadsheets, or waiting on data support. Trusted by enterprises including HelloFresh, Delivery Hero, Bitpanda, and On.
 
-## AI / Agent access
-- [Marketing Data MCP](https://clarisights.com/marketing-data-mcp): Remote MCP server; workspace-scoped connection URL from clarisights.com/dashboard/mcp-settings, authenticated with your Clarisights login, governed by workspace ACL. Tools: list_data_sources, list_metrics, list_dimensions, query_data, list_reports, get_report.
-- [MCP manifest (this repo)](mcp/clarisights-mcp.yml)
+## About
+
+- [Clarisights homepage](https://clarisights.com/): Overview of the marketing insights hub — the challenge (slow reporting, inflexible BI dashboards, spreadsheet sprawl, siloed measurement data) and the solution (one platform, flexible dashboards, no data tickets).
+- [About Us](https://clarisights.com/about-us): Company background, mission, and team.
+- [Customers](https://clarisights.com/customers): Enterprise customers and headline results (e.g., 10% CAC reduction, 300+ marketers self-serving, 90% faster time to insight, 3x testing velocity).
+- [Security](https://clarisights.com/security): Security posture, compliance standards, and certifications. Trusted by publicly listed companies.
 
 ## Product
-- [Clarisights](https://clarisights.com/): Enterprise marketing analytics platform.
-- [Integrations](https://clarisights.com/integrations): 50+ connectors across channels, attribution platforms, and the warehouse.
-- [Customers / case studies](https://clarisights.com/customers)
-- [Sign in](https://app.clarisights.com/)
 
-## Security & compliance
-- [Security](https://clarisights.com/security): SOC 2 Type 2, ISO 27001, GDPR; security contact security@clarisights.com.
-- [Certifications](https://clarisights.com/legal/certifications)
+- [For Marketing Teams](https://clarisights.com/for-marketing-teams): Explore data, test hypotheses, and iterate fast — go from question to insight in minutes with no SQL, spreadsheets, or waiting on data support.
+- [For Data Teams](https://clarisights.com/for-data-teams): Build reliable marketing data products with fully managed API connections, automated data mapping, built-in governance, and access control — enabling governed self-service for marketers.
+- [Integrations](https://clarisights.com/integrations): Overview of all supported data sources and destinations; automatically joins channel, analytics, attribution, and backend data.
+- [Migrate to Clarisights](https://clarisights.com/migrate-to-clarisights): Guidance for teams moving from existing reporting setups (e.g., Funnel, Supermetrics, Fivetran + Looker/Tableau/Power BI).
+- [Clarisights vs BI Dashboards](https://clarisights.com/competitors/clarisights-vs-bi-dashboards): How Clarisights compares to traditional BI dashboards for marketing reporting.
+
+## Marketing Data MCP
+
+- [Marketing Data MCP](https://clarisights.com/marketing-data-mcp): A Model Context Protocol (MCP) server that connects Clarisights to any MCP-compatible AI tool (Claude, ChatGPT, Cursor, Gemini). The AI gets six tools — list_data_sources, list_metrics, list_dimensions (discover); query_data (query); list_reports, get_report (navigate) — to explore data, query metrics, and read reports. Queries run against one governed semantic layer with 50+ connectors joined at deepest granularity, expressed in the team's own KPI definitions (blended CAC, contribution-margin ROAS, MER, target-CPI), and respect the same ACL as the logged-in user. Read-only; queries typically span two years of history. Setup: admin enables AI access in Workspace Settings, user retrieves a connection URL from MCP settings, then adds it to their AI tool and signs in with Clarisights credentials.
+
+## Use Cases
+
+- [Creative Optimization](https://clarisights.com/use-cases/creative-optimization): Find your winning creative formula and prevent ad fatigue. Group ads by common attributes (creative concept, format, source, promo/no-promo) retroactively and going forward, manage naming conventions with drag-and-drop rules synced from ad platforms, view ad previews next to metrics, and analyze performance down to the creative, scene, or element level with attribution data from top- to down-funnel.
+- [Monitoring and Controlling](https://clarisights.com/use-cases/Monitoring-and-Controlling): Monitor and steer budgets with confidence. A 360° view of spend, revenue, targets, and budgets with channel, analytics, and attribution data blended automatically at 100% cost completeness, plus alerts, pacing/forecasting, drill-down from big-picture to granular, and triangulation of MMM, incrementality, and MTA to move beyond last-click ROAS.
+- [Weekly Business Reviews](https://clarisights.com/use-cases/weekly-business-reviews): Automate data preparation for WBRs and answer follow-up questions live in the meeting. Attribution data joined to the most granular level and refreshed daily, budgets/targets/pacing added automatically, and flexible editing of metrics, dashboards, and filters without breaking reports.
+- [Performance Change Diagnosis](https://clarisights.com/use-cases/Performance-Change-Diagnosis): Find the root cause of performance changes fast. Cross-channel insights in one place, quick iteration on time grains, filters, metrics, and dashboards (no Jira tickets or data-team waits), views spanning days to years for seasonality, and all platform metrics including video, custom conversions, and SKAN.
+- [Reporting Hub](https://clarisights.com/use-cases/reporting-hub): A single source of truth for reporting across teams and external agencies/partners. Includes partner-managed campaigns, governance with user groups, customized access rights and version control, collaborative note-taking next to dashboards, and operationalized MMM/incrementality/MTA.
+- [Channel Deep Dives](https://clarisights.com/use-cases/Channel-Deep-Dives): Uncover granular optimization opportunities and prove impact with internal attribution data joined to the deepest level. Consolidate all channel data, slice and dice by any dimension, and answer new questions in minutes — combining BI-dashboard governance with spreadsheet flexibility.
+- [Aggregated Data Exports](https://clarisights.com/use-cases/Aggregated-Data-Exports): For data teams — build marketing data products on reliable, harmonized data instead of fire-fighting pipelines. 300+ native API integrations plus custom sources for 100% cost completeness, unified data out of the box, live in one week, and export aggregated data to your warehouse (for MMM, finance cost pipelines, company dashboards) without expensive Fivetran/ETL bills. 99.99% uptime with observability.
+- [Effective Self-Service](https://clarisights.com/use-cases/effective-self-service): Enable marketers to explore data and reach insights in minutes with governance, so data teams shift from reactive ad-hoc requests to strategic priorities. Curated, reliable metrics, centralized management, clear permissions/version control, and row/column-level security with SSO — covering granular operational workflows, not just high-level monitoring.
+
+## Channel Deep Dives
+
+- [Paid Search](https://clarisights.com/use-cases/deep-dive-paid-search): For paid search managers — blend Google Ads, Bing, and Apple Search Ads with attribution and internal data (no scripts or manual Excel). Slice by campaign type (Search, Shopping, PMax), device, and match type; cluster keywords by quality score, ad relevance, landing-page experience, and expected CTR; and view SEM and SEO together to spot cannibalization.
+- [Paid Social](https://clarisights.com/use-cases/deep-dive-paid-social): For paid social managers — one consolidated view of all paid social channels with attribution and measurement data joined. Slice by feed vs. reels, audience, and creative concept; uncover creative-level insights and ad fatigue; and stand up best-in-class reports for a new channel (Pinterest, Reddit, X) in ~2 days.
+- [Affiliate & Influencer](https://clarisights.com/use-cases/deep-dive-affiliate-influencer): For affiliate/influencer managers — daily visibility across all affiliates, influencers, and partners with attribution, measurement, and first-party data. Publisher-level funnel breakdowns, proactive cost/pacing tracking, 100% cost coverage of niche affiliates and price-comparison sites (via email/CSV/TXT), and support for varied payout structures.
+- [App Acquisition](https://clarisights.com/use-cases/deep-dive-app-acquisition): For UA managers — MMP, attribution, and internal data joined at the most granular level across apps, networks, cohorts, and countries. Go beyond CPI with full-funnel, retention, revenue, and pLTV metrics; find creative-level insights; and add ASO/app-store reporting (organic vs. paid installs, rankings, keywords).
+- [SEO](https://clarisights.com/use-cases/deep-dive-seo): For SEO managers — Search Console and analytics data blended daily across all domains. Break down by country, brand vs. non-brand, and page type down to the query level, estimate conversions by applying SEA conversion rates to organic traffic, prevent SEM/SEO cannibalization, and import backlink and rank data from external SEO tools.
+- [CRM](https://clarisights.com/use-cases/deep-dive-crm): For CRM managers — CRM, MMP, attribution, and internal (revenue, targets) data joined at the most granular level. Slice by communication channel (email, push, in-app), audience, and campaign type; track trends and set alerts; and view acquisition and retention together to see which messaging and offers work best.
+- [Display & Retargeting](https://clarisights.com/use-cases/deep-dive-display-retargeting): For display/remarketing managers — channel, measurement, attribution, and internal data blended in one view. Slice by new vs. existing customer, audience, and creative concept; uncover creative-level insights and fatigue; and compare display's upper-funnel and retargeting contribution against paid social, Google Ads, and other channels.
+
+## Industries
+
+- [Mobility & Delivery](https://clarisights.com/use-cases/industry-deep-dive-mobility-delivery): For mobility and delivery enterprises — 360° view across brands, countries, apps, and product categories with channel, attribution, incrementality coefficients, and internal data blended daily. Move beyond CAC with retention, revenue, and pLTV; report on consumer, partner, rider, and driver acquisition; and find creative-level insights.
+- [Finance](https://clarisights.com/use-cases/industry-deep-dive-finance): For fintech and financial-services companies — 360° view across countries, products, and plans with 100% cost completeness. Go beyond CAC with activation and incrementality metrics, full affiliate/influencer visibility, and SEM/SEO cannibalization analysis — with no PII processed, GDPR compliance, Frankfurt-based servers, and SOC 2 + ISO certifications.
+- [Apps & Mobile Gaming](https://clarisights.com/use-cases/industry-deep-dive-apps-mobile-gaming): For mobile gaming and app businesses — MMP, attribution, and internal data integrated across apps, countries, and cohorts. Move beyond CPI with retention, revenue, and pLTV; stand up granular reports for game launches in minutes; find creative-level insights; and cluster keywords for search optimization.
+- [Technology](https://clarisights.com/use-cases/industry-deep-dive-technology): For technology businesses — Salesforce, attribution, and internal data integrated across countries, products, and campaigns. Go beyond CPL with full-funnel Salesforce conversion and revenue data, brand vs. non-brand vs. competition breakdowns, keyword quality-score analysis, and creative-level insights.
+- [Retail & E-commerce](https://clarisights.com/use-cases/industry-deep-dive-retail-and-e-commerce): For omnichannel and e-commerce enterprises — 360° view across brands, countries, and product lines with 100% cost completeness. Decide on contribution margins, MMM, incrementality, and MTA instead of last-click ROAS; diagnose product categories and seasonal promotions in minutes; and reduce SEM/SEO cannibalization.
+
+## Case Studies
+
+- [HelloFresh](https://clarisights.com/case-study/hellofresh): ~10% CAC reduction in months.
+- [Delivery Hero](https://clarisights.com/case-study/deliveryhero): 300+ marketers self-serving.
+- [Bitpanda](https://clarisights.com/case-study/bitpanda): 90% faster time to insight.
+- [On](https://clarisights.com/case-study/on): 3x increase in testing velocity.
+
+## Integrations Detail
+
+- [Data Sources](https://clarisights.com/data-sources/): 40+ connectors including Facebook/Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Snapchat Ads, DV360, The Trade Desk, Amazon Ads, Microsoft Ads, Pinterest, Reddit, Apple Search Ads, AppLovin, Unity, ironSource, GA4, Adobe Analytics, Mixpanel, Amplitude, AppsFlyer, Adjust, Shopify, Stripe, Salesforce, HubSpot, Braze, Klaviyo, and more.
+- [Data Destinations](https://clarisights.com/data-destinations): Export to Looker Studio, Google Sheets, BigQuery, Snowflake, and Amazon S3.
+
+## Resources
+
+- [Blog](https://clarisights.com/Blog/Collection): Articles on performance marketing, marketing analytics, measurement, and engineering.
+- [Guides](https://clarisights.com/guides): In-depth guides, including [Ad Creative Analytics](https://clarisights.com/guides/ad-creative-analytics).
+- [Glossary](https://clarisights.com/glossary/marketing-attribution): Marketing analytics glossary covering ROAS, CAC, LTV, CPA, MER, MMM, incrementality, attribution, SKAN/ATT, and more.
+- [Ebook: The State of Marketing Analytics](https://clarisights.com/content/ebook-state-marketing-analytics)
+- [Ebook: Guide to Creative Analytics](https://clarisights.com/content/ebook-guide-creative-analytics)
+
+## Featured Articles
+
+- [Why dashboards are failing modern marketing teams](https://clarisights.com/Blog/Articles/why-dashboards-are-failing-modern-marketing-teams)
+- [The issue with BI dashboards in marketing reporting](https://clarisights.com/Blog/Articles/the-issue-with-bi-dashboards-in-marketing-reporting)
+- [Creative intelligence is the new growth lever in performance marketing](https://clarisights.com/Blog/Articles/creative-intelligence-is-the-new-growth-lever-in-performance-marketing)
+- [Clarisights vs Funnel.io: a comprehensive comparison](https://clarisights.com/Blog/Articles/a-comprehensive-comparison-clarisights-vs-funnel-io)
+- [Clarisights vs Salesforce Marketing Cloud Intelligence (formerly Datorama)](https://clarisights.com/Blog/Articles/a-comprehensive-comparison-clarisights-vs-salesforce-marketing-cloud-intelligence-(formerly-datorama))
+
+## Contact
+
+- [Book a Demo](https://clarisights.com/demo): Request a product demonstration.
+- [Sign in](https://app.clarisights.com/): Existing customer login.
+
+## Optional
+
 - [Privacy Policy](https://clarisights.com/legal/privacy)
-
-## More
-- [Blog](https://clarisights.com/Blog/Collection)
-- [About](https://clarisights.com/about-us)
-
-## Notes
-- No public OpenAPI, developer portal, or REST API reference was found (2026-07-18). The primary programmatic surface is the Marketing Data MCP server.
+- [Cookie Policy](https://clarisights.com/legal/cookies)
+- [Certifications](https://clarisights.com/legal/certifications)
+- [Data Processing Addendum](https://clarisights.com/legal/data-processing-addendum)

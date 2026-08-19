@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/clarisights/claude-plugins
+note: >-
+  Clarisights publishes its own Agent Skill. The official "clarisights" Claude
+  plugin marketplace (github.com/clarisights/claude-plugins, MIT, owner
+  Clarisights, homepage clarisights.com) ships one plugin, use-clarisights,
+  containing one skill. The SKILL.md here is saved VERBATIM from the provider
+  repo — API Evangelist authored none of it. The skill drives the Clarisights
+  Marketing Data MCP connector (six tools) rather than a REST API, and carries
+  13 inline CUSTOMIZE markers the customer fills in; Clarisights also ships a
+  Skill Customizer form on the in-app MCP Settings page that generates a filled
+  copy.
+marketplace:
+  name: clarisights
+  manifest: https://raw.githubusercontent.com/clarisights/claude-plugins/main/.claude-plugin/marketplace.json
+  install: |
+    /plugin marketplace add clarisights/claude-plugins
+    /plugin install use-clarisights@clarisights
+  plugins:
+  - name: use-clarisights
+    version: 0.1.0
+    license: MIT
+    category: analytics
+    manifest: https://raw.githubusercontent.com/clarisights/claude-plugins/main/plugins/use-clarisights/.claude-plugin/plugin.json
+    description: >-
+      Marketing performance analyst for your company — analyzes channel,
+      campaign, and creative performance by querying the Clarisights MCP
+      connector.
+skills:
+- file: clarisights-marketing-performance-analyst.md
+  name: marketing-performance-analyst
+  title: Marketing Performance Analyst
+  api: mcp/clarisights-mcp.yml
+  surface: mcp
+  method: searched
+  source: https://github.com/clarisights/claude-plugins/blob/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+  raw: https://raw.githubusercontent.com/clarisights/claude-plugins/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+  description: >-
+    Analyze marketing performance by querying the Clarisights MCP connector —
+    period-over-period reviews, diagnostic drill-down on why a metric moved,
+    and pointed campaign/ad-group/creative questions. Hands off to the pdf
+    skill for reports and the pptx skill for decks.
+  operations:
+  - list_data_sources
+  - list_metrics
+  - list_dimensions
+  - query_data
+  - list_reports
+  - get_report
+  requires:
+  - Clarisights MCP connector configured in the Claude environment
+  - Workspace admin has enabled Settings -> Workspace -> AI access
+  customization_fields:
+  - COMPANY_CONTEXT
+  - COMPANY_TERMINOLOGY
+  - ATTRIBUTION_SOURCES
+  - ATTRIBUTION_METRIC_IDENTIFICATION
+  - USER_CONTEXT
+  - USER_CHANNELS
+  - USER_KEY_METRICS
+  - USER_KEY_DIMENSIONS
+  - EFFICIENCY_DEFINITION
+  - EFFECTIVENESS_DEFINITION
+  - TARGETS_AND_BENCHMARKS
+  - CREATIVE_ANALYSIS_CONFIG
+  - COMMON_WORKFLOWS
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://raw.githubusercontent.com/clarisights/claude-plugins/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+  http_status: 200
+  bytes: 18775

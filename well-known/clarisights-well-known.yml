@@ -1,10 +1,21 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: none
 host: https://clarisights.com
+hosts_probed:
+- https://clarisights.com
+- https://app.clarisights.com
 note: >-
-  No .well-known discovery documents published. All probed paths returned 404
-  on both clarisights.com and app.clarisights.com (2026-07-18). Recorded for
-  audit; no WellKnown pointer emitted.
+  No .well-known discovery documents are published. Every path below returned
+  404 on both clarisights.com (a Framer-hosted marketing site) and
+  app.clarisights.com (re-probed 2026-08-13, confirming the 2026-07-18 result).
+  Recorded for audit; NO WellKnown or SecurityTxt pointer is emitted, because a
+  file documenting an absence must not be scored as a presence. Note the two
+  hosts fail differently: clarisights.com returns a bare "Not found" body for
+  most paths, while app.clarisights.com returns a real 404 page — neither is a
+  soft-200 SPA catch-all, so these are genuine misses rather than unreadable
+  hits. api.clarisights.com, docs.clarisights.com, developer.clarisights.com,
+  mcp.clarisights.com, status.clarisights.com and trust.clarisights.com do not
+  resolve in DNS at all, so there is no third host to probe.
 documents:
 - path: /.well-known/security.txt
   status: 404
@@ -12,7 +23,16 @@ documents:
   status: 404
 - path: /.well-known/oauth-authorization-server
   status: 404
+- path: /.well-known/oauth-protected-resource
+  status: 404
 - path: /.well-known/api-catalog
   status: 404
 - path: /.well-known/ai-plugin.json
   status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+x-evidence:
+  checked: '2026-08-13'
+  method: unauthenticated HTTPS GET, redirects followed

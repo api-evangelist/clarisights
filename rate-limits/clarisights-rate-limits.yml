@@ -1,0 +1,36 @@
+generated: '2026-08-13'
+method: searched
+source: https://clarisights.com/marketing-data-mcp
+limit_count: 0
+note: >-
+  No rate limits are published. Clarisights' own Marketing Data MCP page carries
+  an FAQ entry literally titled "What's the rate limit?" — but the accordion
+  answers are rendered client-side and are absent from the served HTML, so the
+  number is not readable by any machine (or by a human with JS disabled). The
+  question being asked on the page is itself the evidence that a limit exists;
+  the answer is simply not published in a fetchable form. No X-RateLimit-*,
+  RateLimit-*, or Retry-After headers could be observed either: the MCP endpoint
+  is workspace-scoped and requires an authenticated session, so there is no
+  anonymous response to inspect.
+limits: []
+headers: []
+headers_note: >-
+  Unknown, not absent. Nothing anonymous to probe; no header contract documented.
+exhaustion_status: null
+related_caps:
+- name: query_data.page_size
+  value: 1000
+  kind: result-page cap, NOT a rate limit
+  source: https://github.com/clarisights/claude-plugins/blob/main/plugins/use-clarisights/skills/marketing-performance-analyst/SKILL.md
+  note: >-
+    Recorded here only so it is not mistaken for a throughput limit. Default 50,
+    max 1000 rows per query_data call. Captured properly in
+    conventions/clarisights-conventions.yml.
+- name: query history window
+  value: typically two full years per workspace
+  kind: data-retention window, NOT a rate limit
+  source: https://clarisights.com/marketing-data-mcp
+evidence:
+- url: https://clarisights.com/marketing-data-mcp
+  status: 200
+  finding: FAQ question "What's the rate limit?" present; answer body not in served HTML.

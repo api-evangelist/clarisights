@@ -1,18 +1,78 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
 source: https://clarisights.com/security
+sources:
+- https://clarisights.com/security
+- https://clarisights.com/legal/certifications
+- https://clarisights.com/marketing-data-mcp
+- https://github.com/clarisights/claude-plugins
 standards:
 - id: soc2-type2
   conforms: true
-  evidence: Clarisights has undergone a SOC 2 Type 2 attestation (AICPA framework), per the security page.
+  evidence: >-
+    SOC 2 Type 2 attestation (AICPA framework) named on both the security page
+    and the certifications/trust page, which also lists a SOC 2 Type 1 report.
 - id: iso-27001
   conforms: true
-  evidence: Security program certified to the ISO 27001 standard, per the security page.
+  evidence: Security program certified to ISO 27001; certifications page names the 27001:2022 revision.
 - id: gdpr
   conforms: true
-  evidence: Documented full compliance with applicable EU data privacy legislation (GDPR); Marketing Data MCP documented as GDPR-compliant with no data storage.
+  evidence: >-
+    Documented full compliance with applicable EU data privacy legislation;
+    Data Processing Addendum and appendices published. The Marketing Data MCP is
+    documented GDPR-compliant with no user-level data stored by the MCP layer;
+    the Finance industry page states no PII processed and Frankfurt-based servers.
+- id: mcp
+  conforms: true
+  version_claimed: null
+  evidence: >-
+    Ships a published remote Model Context Protocol server (Marketing Data MCP)
+    with six documented tools, an official Claude plugin marketplace at
+    github.com/clarisights/claude-plugins, and named client compatibility
+    (Claude, ChatGPT, Cursor, Gemini). No protocol revision is stated and
+    tools/list is workspace-scoped and auth-gated, so the wire-level conformance
+    was not independently verified.
+- id: llmstxt
+  conforms: true
+  evidence: >-
+    Serves a real /llms.txt at https://clarisights.com/llms.txt (HTTP 200,
+    text/plain, 14.5 KB) enumerating ~50 pages across product, use cases,
+    industries, integrations and legal.
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    Publishes a conforming Agent Skill (frontmatter name + description, markdown
+    body) under an official plugin marketplace manifest, MIT licensed.
 - id: oauth2
   conforms: false
-  evidence: No public OpenAPI or OAuth authorization-server metadata found; MCP access authenticates via existing Clarisights workspace login.
+  evidence: >-
+    No OAuth authorization-server or protected-resource metadata is served
+    (/.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource both 404 on clarisights.com and
+    app.clarisights.com, 2026-08-13). MCP access authenticates via the existing
+    Clarisights workspace login with no separately-issued token or scope surface.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on both hosts. SSO is advertised but no protocol or IdP metadata is published.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger document found. Probed /openapi.json, /openapi.yaml,
+    /swagger.json, /v1/openapi.json, /api-docs, /docs, /redoc on clarisights.com
+    and app.clarisights.com — all 404 or HTML shell. api.clarisights.com,
+    docs.clarisights.com and developer.clarisights.com do not resolve in DNS.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming, or webhook surface is documented; nothing to describe.
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json both 404 on clarisights.com and app.clarisights.com.
 - id: rfc9457-problem-details
   conforms: false
+  evidence: No error catalog or problem-type registry is published for any surface.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt 404 on both hosts, though a security contact
+    (security@clarisights.com) is published on the security and certifications
+    pages.

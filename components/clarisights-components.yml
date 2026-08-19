@@ -1,0 +1,37 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/clarisights/KnitUI
+sources:
+- https://github.com/clarisights/KnitUI
+- https://www.npmjs.com/package/knit-ui
+- https://knitui.design
+note: >-
+  Clarisights publishes one client-side component surface: Knit, the React
+  component library implementing its "Knit design language". It is the company's
+  internal design system released publicly — it is NOT an embeddable Clarisights
+  dashboard, widget, or hosted surface, and it does not call the Clarisights
+  platform. There is no embed/iframe/web-component product: dashboards are
+  consumed inside app.clarisights.com or exported to Looker Studio, Google
+  Sheets, BigQuery, Snowflake and Amazon S3 (see the data-destinations surface).
+families:
+- name: Knit UI
+  kind: design-system
+  framework: React
+  language: TypeScript
+  repository: https://github.com/clarisights/KnitUI
+  docs: https://knitui.design
+  loader:
+    registry: npm
+    package: knit-ui
+    version: 0.7.7
+    published: '2024-01-18'
+    install: npm install knit-ui
+  license: MIT
+  status: dormant
+  status_evidence: >-
+    Last npm release 0.7.7 on 2024-01-18; last repo push 2024-01-18. No release
+    in over two years.
+embedded_surfaces: []
+embedded_surfaces_note: >-
+  None published. Recorded as an explicit empty rather than omitted: the absence
+  of an embeddable dashboard is a real finding for a reporting platform.

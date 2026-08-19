@@ -1,0 +1,73 @@
+generated: '2026-08-13'
+method: searched
+source: https://clarisights.com/marketing-data-mcp
+sources:
+- https://clarisights.com/marketing-data-mcp
+- https://clarisights.com/llms.txt
+- https://github.com/clarisights/claude-plugins
+note: >-
+  Derived-from-spec was not possible: Clarisights publishes no OpenAPI, so
+  derive-authentication.py produced zero schemes (0 spec files). This profile is
+  SEARCHED from the provider's own Marketing Data MCP documentation, which
+  describes the auth model for the only programmatic surface the company ships.
+summary:
+  types: [delegated-user-login]
+  api_key_in: []
+  oauth2_flows: []
+  api_keys_issued: false
+  api_keys_note: >-
+    Explicitly none. The docs say it twice — "no separate tokens to manage" and
+    "No separate tokens, no parallel permission tree." There is no developer
+    key-issuance surface anywhere on the site.
+schemes:
+- name: clarisights-workspace-login
+  type: delegated-user-login
+  surface: mcp
+  sources: [https://clarisights.com/marketing-data-mcp]
+  description: >-
+    The MCP client (Claude, ChatGPT, Cursor, Gemini, or any MCP-compatible tool)
+    is pointed at a workspace-scoped connection URL and the end user signs in
+    with their own Clarisights credentials from inside the AI client. Every call
+    is then made on that logged-in user's behalf, using their auth, their
+    permissions, and their history.
+  authorization_model: acl-inherited
+  authorization_detail: >-
+    "Whatever that user can see in Clarisights, the AI can see: accounts,
+    regions, brands, reports. Nothing more." There is no parallel scope or
+    permission tree for the agent surface — the workspace ACL is the authority.
+  admin_gate:
+    control: Settings -> Workspace -> AI access
+    granularity: global on/off for the whole workspace
+    actor: workspace admin
+  enrollment:
+  - step: 1
+    action: Workspace admin enables AI access (Settings -> Workspace -> AI access).
+  - step: 2
+    action: Signed-in user opens their MCP settings page and copies the workspace connection URL.
+  - step: 3
+    action: User pastes the URL into their AI client and signs in with their Clarisights account.
+  scopes: []
+  scopes_note: >-
+    No OAuth scope surface is published, so scopes/ is deliberately not emitted.
+    Authorization is entirely ACL-inherited rather than scope-granted.
+sso:
+  supported: true
+  evidence: >-
+    The Effective Self-Service page (linked from the provider llms.txt) states
+    "row/column-level security with SSO". No SSO protocol, IdP list, or metadata
+    endpoint is published publicly.
+  protocols_published: false
+oidc_discovery:
+  probed: true
+  result: none
+  detail: >-
+    /.well-known/openid-configuration, /.well-known/oauth-authorization-server
+    and /.well-known/oauth-protected-resource all return 404 on clarisights.com
+    and 404 on app.clarisights.com (probed 2026-08-13). See
+    well-known/clarisights-well-known.yml.
+data_handling:
+  stores_user_data: false
+  evidence: >-
+    "The MCP server is an interface, not a store. Your data stays in
+    Clarisights." Documented GDPR-compliant with no region-specific data
+    residency wrinkles.
