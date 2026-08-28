@@ -12,6 +12,17 @@ description: >-
   the same workspace access controls as the UI. The platform advertises 50+
   connectors, ISO 27001 certification, and SOC 2 Type 2 attestation.
 url: https://raw.githubusercontent.com/api-evangelist/clarisights/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
