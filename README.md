@@ -64,6 +64,108 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Clarisights is a company surfaced as a portfolio company of techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Clarisights is an enterprise marketing analytics platform that unifies marketing data from channels, web analytics, attribution platforms, and the data warehouse into a single self-service system. Marketing teams explore data, build custom dashboards, and generate trustworthy insights without SQL or data-engineering support, accelerating reporting cycles and reducing manual spreadsheet work. Clarisights also ships a Marketing Data MCP server that connects governed marketing data to AI tools such as Claude, ChatGPT, Cursor, and Gemini, exposing discovery, query, and report-navigation tools scoped by the same workspace access controls as the UI. The platform advertises 50+ connectors, ISO 27001 certification, and SOC 2 Type 2 attestation.
 
-Backed by: techstars — https://clarisights.com/
+**Areas:** Company · Marketing Analytics · Marketing Intelligence · Business Intelligence · Data Integration · Reporting · Dashboards · MCP · Artificial Intelligence
+
+## Clarisights on APIs.io
+
+Everything profiled for Clarisights is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/clarisights/](https://apis.io/providers/clarisights/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Clarisights Marketing Data MCP](https://apis.io/servers/clarisights/clarisights-marketing-data-mcp/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Clarisights Authentication](https://apis.io/security/clarisights/clarisights-authentication/)
+- [Clarisights Domain Security](https://apis.io/security/clarisights/clarisights-domain-security/)
+- [Clarisights Trust Center](https://apis.io/security/clarisights/clarisights-trust-center/)
+- [Clarisights Vulnerability Disclosure](https://apis.io/security/clarisights/clarisights-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Clarisights Plans Pricing](https://apis.io/plans/clarisights/clarisights-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Clarisights Rate Limits](https://apis.io/rate-limits/clarisights/clarisights-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://clarisights.com/)
+- [Documentation](https://help.clarisights.com/en/)
+- [Getting started](https://help.clarisights.com/en/collections/3767521-using-clarisights-101)
+- [Support](https://help.clarisights.com/)
+- [Blog](https://clarisights.com/Blog/Collection)
+- [Security](https://clarisights.com/security)
+- [Compliance](https://clarisights.com/legal/certifications)
+- [Privacy policy](https://clarisights.com/legal/privacy)
+- [GitHub](https://github.com/clarisights)
+
+## API Evangelist rating
+
+**Kin Score 27.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 47.6 |
+| Access clarity | 32.9 |
+
+**Agent readiness 8.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/clarisights/](https://apis.io/providers/clarisights/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Clarisights: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/clarisights/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
